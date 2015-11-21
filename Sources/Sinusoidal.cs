@@ -8,28 +8,43 @@ namespace OpenSignalLib.Sources
 {
     public class Sinusoidal : Signal
     {
-        public Sinusoidal(float frequency, float phase = 0, float SampleRate = - 1, float amplitude = 1, int length = -1)
+        private BaseSignalGenerator p = new BaseSignalGenerator(SignalType.Sine);
+        private float _increment = 0.001f;
+        public Sinusoidal(float frequency, float phase = 0, float SampleRate = - 1, float amplitude = 1, int length = -1,
+            bool useParallelization = true)
         {
             if (SampleRate == -1) SampleRate = 30 * frequency;
             if (length == -1) length = (int)SampleRate;
             this.SamplingRate = SampleRate;
-            BaseSignalGenerator p = new BaseSignalGenerator(SignalType.Sine);
             p.Amplitude = amplitude;
             p.Frequency = frequency;
             p.Phase = phase;
-            float tmp = 1.0f / SampleRate;
-            float t = 0;
+            this._increment = 1.0f / SampleRate;
             this.Samples = new double[length];
-            for (int i = 0 ; i < length ; i++)
+            if (length > 5000 && useParallelization)
             {
-                this.Samples[i] = p.GetValue(t);
-                t += tmp;
+                System.Threading.Tasks.Parallel.For(0, length, _calc);
             }
-
+            else
+            {
+                float t = 0;
+                for (int i = 0 ; i < length ; i++)
+                {
+                    this.Samples[i] = p.GetValue(t);
+                    t = i * _increment;
+                }
+            }
+        }
+        private void _calc(int i)
+        {
+            this.Samples[i] = p.GetValue(i * _increment);
         }
 
 
     }
 
-    
+ 
+
+
+
 }
