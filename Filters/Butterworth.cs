@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NumpyDotNet;
 
 namespace OpenSignalLib.Filters
 {
@@ -105,7 +106,7 @@ namespace OpenSignalLib.Filters
                 d1[i] = 2.0 * (1 - a2) / sampleRate;
                 d2[i] = -(a2 - 2.0 * a * r + 1.0) / sampleRate;
             }
-            
+
             for (int j = 0 ; j < samples.Length ; ++j)
             {
                 x = samples[j];
@@ -153,5 +154,31 @@ namespace OpenSignalLib.Filters
             }
             return filt;
         }
+    }
+
+    public static class Butter
+    {
+        //    def buttap(N):
+        //"""Return (z,p,k) for analog prototype of Nth order Butterworth filter.
+        //The filter will have an angular (e.g. rad/s) cutoff frequency of 1.
+        //"""
+        //if abs(int(N)) != N:
+        //    raise ValueError("Filter order must be a nonnegative integer")
+        //z = numpy.array([])
+        //m = numpy.arange(-N+1, N, 2)
+        //# Middle value is 0 to ensure an exactly real pole
+        //p = -numpy.exp(1j * pi * m / (2 * N))
+        //k = 1
+        //return z, p, k
+        public static double buttap(int N)
+        {
+            int[] m = new int[0];
+            return 0;
+        }
+
+        //public static double[] butter(int N, double Wn, string btype = "low", string output = "ba")
+        //{
+
+        //}
     }
 }

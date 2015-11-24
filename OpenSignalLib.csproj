@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="IronPlot, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\Sprasad\Desktop\ironplotsource\bin\IronPlot.dll</HintPath>
+    </Reference>
     <Reference Include="IronPython, Version=2.7.5.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Techman\Libraries\dotNET\IPy\2.7.5\IronPython.dll</HintPath>
@@ -40,6 +44,9 @@
     </Reference>
     <Reference Include="NAudio">
       <HintPath>..\..\..\..\..\..\Techman\Libraries\dotNET\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="NumpyDotNet">
+      <HintPath>C:\Users\Sprasad\Desktop\ironplotsource\bin\DLLs\NumpyDotNet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -61,11 +68,9 @@
     <Compile Include="Filters\Expt.cs" />
     <Compile Include="Filters\Other.cs" />
     <Compile Include="Operations\Misc.cs" />
+    <Compile Include="Operations\Plotting.cs" />
     <Compile Include="Operations\StatisticFunction.cs" />
     <Compile Include="Operations\Windows.cs" />
-    <Compile Include="Transforms\FFT.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Transforms\Fourier.cs" />
     <Compile Include="Transforms\_Fourier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
